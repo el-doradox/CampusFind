@@ -1,0 +1,21 @@
+:root { --navy:#142648; --blue:#2a69be; --teal:#1c9b91; --pale:#eff5fc; --ink:#26364a; --muted:#66758a; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--ink); background:#fff; }
+.topbar { height:72px; padding:0 8%; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #e7edf5; }
+.brand { font-size:23px; font-weight:800; color:var(--navy); }
+nav { display:flex; gap:26px; } nav a { text-decoration:none; color:var(--muted); font-size:14px; }
+.hero { padding:84px 8% 74px; background:linear-gradient(120deg,#f3f7ff,#fff 70%); }
+.eyebrow { color:var(--teal); font-weight:700; letter-spacing:2px; font-size:12px; }
+h1 { color:var(--navy); font-size:clamp(38px,5vw,64px); line-height:1.08; margin:20px 0; max-width:850px; }
+h1 span { color:var(--blue); } .hero p { color:var(--muted); max-width:660px; font-size:18px; line-height:1.6; }
+.actions { display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+.button { display:inline-block; padding:13px 21px; border-radius:9px; text-decoration:none; font-weight:700; }
+.primary { background:var(--blue); color:white; } .secondary { border:1px solid #ccd8e8; color:var(--navy); background:white; }
+.notice { margin-top:28px; font-size:12px!important; color:#8a5a13!important; }
+.section { padding:54px 8%; } h2 { color:var(--navy); font-size:30px; margin:0 0 24px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+article { padding:25px; border:1px solid #e1eaf4; border-radius:14px; background:white; }
+.number { color:var(--teal); font-weight:800; font-size:13px; } h3 { color:var(--navy); } article p,.callout p { color:var(--muted); line-height:1.6; }
+.callout { margin:0 8% 54px; padding:32px; border-radius:14px; background:var(--pale); }
+footer { padding:26px 8%; border-top:1px solid #e7edf5; color:var(--muted); font-size:13px; }
+@media(max-width:600px) { .topbar { padding:0 5%; } nav { gap:12px; } .hero,.section { padding-left:5%; padding-right:5%; } .callout { margin-left:5%; margin-right:5%; } }
