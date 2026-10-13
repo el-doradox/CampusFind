@@ -1,58 +1,106 @@
 # CampusFind — College Lost & Found Management System
 
-A Java web-based starter project for reporting, searching, and recovering lost belongings on a college campus.
+CampusFind is a Java-based web application designed to help college students and staff report, search, and view lost or found items in one place.
 
-## Technology
-- Java 17
-- Jakarta Servlet API
-- JSP / HTML / CSS
-- JDBC
-- MySQL 8
-- Apache Tomcat 10.1+
-- Maven
+## Features
 
-## Current starter status
-This repository is a **starter scaffold**, not a fully finished application. It includes a database schema, project structure, a simple home page, a health servlet, and a DAO connection helper. Add authentication, report CRUD, search, recovery requests, validation, and admin moderation before describing it as a complete system.
+- Browse reported lost and found items
+- Search by item name, category, or description
+- Filter items by Lost or Found status
+- Report a lost or found item
+- View item descriptions, locations, contact information, and report dates
+- Store item records in a MySQL database
 
-## Requirements
-- JDK 17+
-- Maven 3.8+
-- MySQL 8+
-- Apache Tomcat 10.1+
+## Technology Stack
 
-## Setup
-1. Create a MySQL database and run `src/main/resources/schema.sql`.
-2. Set environment variables (recommended):
-   - `CAMPUSFIND_DB_URL` (example: `jdbc:mysql://localhost:3306/campusfind`)
-   - `CAMPUSFIND_DB_USER`
-   - `CAMPUSFIND_DB_PASSWORD`
-3. Build with `mvn clean package`.
-4. Deploy `target/campusfind.war` to Tomcat 10.1+.
-5. Open `http://localhost:8080/campusfind/`.
+- **Language:** Java 17
+- **Frontend:** JSP, HTML, CSS
+- **Backend:** Java Servlets
+- **Database:** MySQL
+- **Database Connectivity:** JDBC and MySQL Connector/J
+- **Build Tool:** Maven
+- **Server:** Apache Tomcat 10.1
 
-Do not commit database passwords or personal data to GitHub.
+## Prerequisites
 
-## Suggested implementation order
-1. Add registration/login with hashed passwords and session management.
-2. Add `ItemReport` model and DAO methods to create/list/search LOST and FOUND reports.
-3. Add JSP forms and Servlets for creating reports and viewing results.
-4. Add recovery request workflow and status changes.
-5. Add admin-only moderation actions and validation.
-6. Test invalid input, SQL errors, authorization, and empty search results.
+Install the following before running the project:
 
-## Suggested repository structure
-- `model/`: domain classes
-- `dao/`: JDBC data-access classes
-- `servlet/`: HTTP request handlers
-- `service/`: business rules (add as features grow)
-- `src/main/webapp/`: JSP, CSS, and static assets
-- `src/main/resources/schema.sql`: database schema
+- JDK 17
+- Apache Maven
+- MySQL Server
+- Apache Tomcat 10.1
 
-## Rubric alignment
-- Problem/solution design: README, requirements, workflow, presentation.
-- Core Java: models, interfaces, collections, exception handling, and OOP.
-- JDBC: DAO classes with parameterized SQL queries.
-- Servlets/web integration: servlet endpoints and JSP pages.
+## Database Setup
 
-## Security notes
-Use `PreparedStatement`; never concatenate user input into SQL. Hash passwords with a reputable password-hashing library. Validate all inputs on the server. Add authorization checks to every admin endpoint.
+Create the database in MySQL:
+
+```sql
+CREATE DATABASE campusfind;
+USE campusfind;
+```
+
+Create the items table:
+
+```sql
+CREATE TABLE IF NOT EXISTS items (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    item_name VARCHAR(100) NOT NULL,
+    description TEXT,
+    category VARCHAR(50),
+    status ENUM('Lost', 'Found') NOT NULL,
+    location VARCHAR(150),
+    contact VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Configure the database connection in the project's `DBConnection.java` file using your local MySQL username and password. Do not upload real passwords or other credentials to GitHub.
+
+## Build the Project
+
+Open a terminal in the project root directory, where `pom.xml` is located, and run:
+
+```bash
+mvn clean package
+```
+
+This generates the deployable WAR file in the `target` directory.
+
+## Run the Application
+
+1. Make sure MySQL is running.
+2. Start Apache Tomcat 10.1.
+3. Deploy `target/campusfind.war` to Tomcat's `webapps` directory.
+4. Open the application in your browser:
+
+```text
+http://localhost:8080/campusfind/items
+```
+
+The default Tomcat port is `8080`. Adjust the URL if your server uses a different port.
+
+## Testing
+
+The following features have been manually tested:
+
+- Item listing
+- Keyword search
+- Lost and Found filters
+- View Details
+- Report Item
+
+## Future Enhancements
+
+- Student authentication
+- Item image uploads
+- Administrative review of reports
+- Item claim and notification workflows
+
+These are possible future enhancements and are not claimed as implemented features.
+
+## Author
+
+**Sumit Kumar**  
+B.Tech CSE (Cybersecurity and Computer Networks)  
+Class / Section: 29  
+
